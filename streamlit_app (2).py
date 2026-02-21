@@ -1,75 +1,16 @@
-import streamlit as st
-import requests
-import datetime
-import re
+
 
 # BASE_URL = "http://localhost:8000"  # Backend endpoint
 BASE_URL = "https://voyageai-smart-travel-assistant-1.onrender.com"
 
 # -------------------- PAGE CONFIG --------------------
 import streamlit as st
-st.markdown("""
-<h1 style="
-    text-align:center;
-    font-size:55px;
-    font-weight:900;
-    color:red;
-    margin-top:70px;   
-    white-space:nowrap;
-    margin-bottom:-0px;
-">
-✈️🌍 AI Travel Assistant ChatBot 🌍✈️
-</h1>
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-p {
-    margin-top: 0px !important;
-    margin-bottom: 5px !important;
-}
-
-h2, h3 {
-    margin-top: 5px !important;
-    margin-bottom: 5px !important;
-}
-
-.block-container {
-    padding-top: 15px !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-
-st.markdown("""
-<style>
-
-
-div[data-testid="stTitle"] {
-    margin-bottom: -30px !important;
-    padding-bottom: 0px !important;
-}
-
-
-div[data-testid="stHeader"] {
-    margin-top: -10px !important;
-}
-
-
-.block-container {
-    padding-top: 20px !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 
 # ✅ Full Page Background Image
 st.markdown("""
 <style>
 .stApp {
-background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+    background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -89,214 +30,16 @@ input, textarea {
 }
 </style>
 """, unsafe_allow_html=True)
+
+
+# ✅ Title
 st.markdown("""
-<h3 style="
-    color: green;
-    font-size:28px;
-    font-weight:800;
-    margin-top:0px;
-    margin-bottom:-10px;
-">
-✈️ Plan your trip with AI easily!
-</h3>
-""", unsafe_allow_html=True)
-st.markdown("""
-    <style>
-        
-
-/* ✅ Make all form labels Bold */
-label {
-    font-weight: 800 !important;
-    font-size: 18px !important;
-    color: black !important;
-}
-
-/* ✅ Selectbox label */
-div[data-testid="stSelectbox"] label {
-    font-weight: 800 !important;
-    font-size: 18px !important;
-}
-
-/* ✅ Number input label */
-div[data-testid="stNumberInput"] label {
-    font-weight: 800 !important;
-    font-size: 18px !important;
-}
-
-/* ✅ Textarea label */
-div[data-testid="stTextArea"] label {
-    font-weight: 800 !important;
-    font-size: 18px !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-/* ⭐ All Form Labels Bold + Big + Stylish */
-label {
-    font-weight: 900 !important;
-    font-size: 22px !important;
-    color: white !important;
-
-    /* Shadow for visibility */
-    text-shadow: 2px 2px 6px black !important;
-
-    /* Spacing */
-    margin-bottom: 8px !important;
-}
-
-/* ✅ Selectbox Label */
-div[data-testid="stSelectbox"] label {
-    font-weight: 900 !important;
-    font-size: 22px !important;
-    color: white !important;
-}
-
-/* ✅ Number Input Label */
-div[data-testid="stNumberInput"] label {
-    font-weight: 900 !important;
-    font-size: 22px !important;
-    color: white !important;
-}
-
-/* ✅ TextArea Label */
-div[data-testid="stTextArea"] label {
-    font-weight: 900 !important;
-    font-size: 22px !important;
-    color: white !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-/* ✅ Labels Bigger + Bold + Black */
-label {
-    font-weight: 900 !important;
-    font-size: 28px !important;
-    color: black !important;
-}
-
-/* ✅ Selectbox Label */
-div[data-testid="stSelectbox"] label {
-    font-weight: 900 !important;
-    font-size: 28px !important;
-    color: black !important;
-}
-
-/* ✅ Number Input Label */
-div[data-testid="stNumberInput"] label {
-    font-weight: 900 !important;
-    font-size: 28px !important;
-    color: black !important;
-}
-
-/* ✅ TextArea Label */
-div[data-testid="stTextArea"] label {
-    font-weight: 900 !important;
-    font-size: 28px !important;
-    color: black !important;
-}
-</style>
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-/* ✅ Full Form Border Bold */
-div[data-testid="stForm"] {
-    border: 4px solid black !important;   /* 👈 Bold Border */
-    border-radius: 18px !important;
-    padding: 25px !important;
-
-    box-shadow: 0px 6px 18px rgba(0,0,0,0.25);
-    background: rgba(255,255,255,0.85);
-}
-
-</style>
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-/* ✅ Full page background fix */
-.stApp {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-/* ✅ Content container width fix */
-.block-container {
-    max-width: 900px !important;
-    margin: auto !important;
-    padding-top: 20px !important;
-}
-
-/* ✅ Title fix */
-h1 {
-    text-align: center;
-    font-size: 55px !important;
-    margin-bottom: 10px !important;
-}
-
-/* ✅ Subtitle fix */
-h3 {
-    text-align: center;
-    margin-top: 0px !important;
-    margin-bottom: 15px !important;
-}
-
-/* ✅ Header text fix */
-h2 {
-    text-align: center;
-    font-size: 32px !important;
-    margin-top: 10px !important;
-    margin-bottom: 20px !important;
-}
-
-/* ✅ Form fix (Chatbot box) */
-div[data-testid="stForm"] {
-    width: 100% !important;
-    margin: auto !important;
-    border: 4px solid black !important;
-    border-radius: 18px !important;
-    padding: 25px !important;
-    background: rgba(255,255,255,0.9) !important;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.25);
-}
-
-/* ✅ Input box full width */
-input, textarea {
-    width: 100% !important;
-    border-radius: 12px !important;
-}
-
-/* ✅ Mobile responsive */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 38px !important;
-    }
-
-    h2 {
-        font-size: 24px !important;
-    }
-
-    div[data-testid="stForm"] {
-        padding: 15px !important;
-    }
-}
-
-</style>
+<h1 style="text-align:center; color:#ff0000; font-size:50px; font-weight:800;">
+🌍 AI Travel Assistant ChatBot 🌍
+</h1>
 """, unsafe_allow_html=True)
 
-
-
-
-
-
-
+st.write("✈️ Plan your trip with AI easily!")
 
 
 
@@ -372,10 +115,9 @@ st.markdown("""
     
     .card-text li:
     before {
-        content: "🌟";
+    content: "🌟";
     position: absolute;
     left: 0;
-
     }
     
     .section-title {
@@ -511,7 +253,7 @@ def format_other_sections(sections):
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-st.header("How can I help you in planning a trip? Let me know where do you want to visit")
+st.header("How can I help you in planning a trip? Let me know where do you want to visit.")
 
 # User input form
 with st.form(key="query_form", clear_on_submit=True):
